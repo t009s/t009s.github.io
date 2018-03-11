@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>View Instgram Profile Pic In HD</title>
+	<link rel="stylesheet" type="text/css" href="main.css" />
+	<link rel="stylesheet" type="text/css" href="main-responsive.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="View anyone's instagram profile pic in HD and download it for free. See Instagram DP in HD. Instagram profie pic/ DP in full size.">
+</head>
+<body>
+
+	<div class="wrapper">
+		<div class="sidenav-section">
+			<div class="header">
+				<div class="logo">
+					<img src="insta-logo.png">
+				</div>
+				<div class="search">
+						<input type="text" onkeypress="key(event)" placeholder="Username"/><br /><br />
+						<input type="Submit"  value="* View DP *" class="button">
+				</div>
+			</div>
+			<div class="thumbnails">
+				<span>Recently Viewed:</span><br />
+
+			</div>
+		</div>
+		<div class="insta-dp-view">
+			<div class="container">
+				<div class="user-name">
+						<div class="name">
+							<div class="image">
+								<img src="logo.png" />
+							</div>
+							<div class="instauser">
+								<a href="https://www.instagram.com/" target="_blank" class="profile-link">instagram</a>
+							</div>
+						</div>
+						<div class="follow">
+
+						</div>
+				</div>
+				<div class="profile-pic">
+					<img src="" />
+				</div>
+				<div class="footer">
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var onPress = document.querySelector('.button');
+		var uField = document.querySelector('input');
+		var pLink = document.querySelector('.profile-link');
+		var insertImg = document.querySelectorAll("img");
+		var userName;
+		var thumb = document.querySelector('.thumbnails');
+		var replaceStr;
+
+		onPress.addEventListener('click', getUrl);
+		
+		function key(e) {
+			if(e.which === 13) {
+				getUrl();
+			}
+		}
+
+		function getUrl() {
+			userName = uField.value;
+			userName = userName.toLowerCase();
+			var request = new XMLHttpRequest();
+			request.addEventListener("load", function(evt){
+				document.querySelector('span').style.display = 'block';
+				 var create = document.createElement('img');
+					var indexOne = evt.currentTarget.response.indexOf("s320x320");
+					var indexTwo = indexOne + evt.currentTarget.response.slice(indexOne).indexOf(".jpg");
+					var imgURL = "https://scontent-bom1-1.cdninstagram.com/s1080x1080" + evt.currentTarget.response.slice(indexOne + 8, indexTwo + 4);
+					insertImg[2].style.display = "block";
+					insertImg[2].src = imgURL;
+					insertImg[1].src = imgURL;
+					thumb.appendChild(create);
+					replaceStr = thumb.querySelectorAll('img');
+					var len = replaceStr.length - 1;
+					replaceStr[len].src = imgURL;
+					replaceStr[len].alt = userName;
+					pLink.href = "https://www.instagram.com/" + userName;
+					pLink.textContent = userName;
+					replaceStr[len].addEventListener('click', someFunction);
+			}, false);
+			request.open('GET', 'https://www.instagram.com/' + userName, true);
+			request.send();
+		}
+
+		function someFunction() {
+			insertImg[2].src = this.src;
+			insertImg[1].src = this.src;
+			pLink.href = "https://www.instagram.com/" + this.alt;
+			pLink.textContent = this.alt;
+		}
+
+	</script>
+
+</body>
+</html>
