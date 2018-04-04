@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="main-responsive.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="View anyone's instagram profile pic in HD and download it for free. See Instagram DP in HD. Instagram profie pic/ DP in full size.">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 
@@ -51,7 +52,6 @@
 			</div>
 		</div>
 	</div>
-
 	<script type="text/javascript">
         document.title = 'InstaPic';
 		var onPress = document.querySelector('.button');
@@ -69,12 +69,11 @@
 				getUrl();
 			}
 		}
-
-		function getUrl() {
+        function getUrl() {
 			userName = uField.value;
 			userName = userName.toLowerCase();
-			var request = new XMLHttpRequest();
-			request.addEventListener("load", function(evt){
+                var request = new XMLHttpRequest();
+			     request.addEventListener("load", function(evt){
 				document.querySelector('span').style.display = 'block';
 				 var create = document.createElement('img');
 					var indexOne = evt.currentTarget.response.indexOf("/vp/");
@@ -91,10 +90,10 @@
 					pLink.href = "https://www.instagram.com/" + userName;
 					pLink.textContent = userName;
 					replaceStr[len].addEventListener('click', someFunction);
-			}, false);
-			request.open('GET', 'https://casarov-mlin.com/zoom.php?id=' + userName, true);
+		}, false);
+			request.open('GET', 'curly.php?id=' + userName, true);
 			request.send();
-		}
+        }
 
 		function someFunction() {
 			insertImg[2].src = this.src;
