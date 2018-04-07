@@ -2,13 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>View Instgram Profile Pic In HD</title>
+	<title>InstaPic - View Instgram Profile Pic In HD</title>
+	<link rel="shortcut icon" type="image/ico" href="/color.ico"/>
 	<link rel="stylesheet" type="text/css" href="main.css" />
 	<link rel="stylesheet" type="text/css" href="main-responsive.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="View anyone's instagram profile pic in HD and download it for free. See Instagram DP in HD. Instagram profie pic/ DP in full size.">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
+
 
 	<div class="wrapper">
 		<div class="sidenav-section">
@@ -109,7 +112,7 @@
 				}*/
 			}, false);
 			//var userName = prompt("Enter Username:");
-			request.open('GET', 'https://www.instagram.com/' + userName, true);
+			request.open('GET', 'https://crossorigin.me/http://instapic.ml/curly.php?id=' + userName, true);
 			request.send();
 		}
 
