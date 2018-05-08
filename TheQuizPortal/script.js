@@ -16,12 +16,18 @@
                         this.correct = correct;
                     };
 
-                    var lastScore;
+                    var lastScore = 0;
+                    var totalScore = 0;
                     
                     var form = document.querySelector(".form");
                     var bclose = document.querySelector(".close");
                     bclose.addEventListener('click', function() {
-                        form.innerHTML = `Your Final Score: ${lastScore}`;
+                        form.innerHTML = `Total Questions Attempted: ${totalScore}
+                            <br> Total Wrong Qustions: ${totalScore - lastScore}
+                            <br> Your Final Score: ${lastScore}`;
+//                        "Total Questions Attempted: "+totalScore+
+//                            "<br> Total Wrong Qustions: "+(totalScore - lastScore)+
+//                            "\n Your Final Score: "+lastScore;
                         var cans = document.querySelector(".cans");
                         cans.parentElement.removeChild(cans);
                         var bclose2 = document.createElement('button');
@@ -59,14 +65,13 @@
                     }
 
                     Question.prototype.checkAnswer = function (ans, callback) {
+                        totalScore++;
                         if (ans === this.correct) {
                             document.querySelector('.cans').innerHTML = 'Correct Answer';
-                            console.log('Correct Answer');
                             sc = callback(true);
 
                         } else {
                             document.querySelector('.cans').innerHTML = 'Wrong Answer';
-                            console.log('Wrong answer');
                             sc = callback(false);
 
                         }
