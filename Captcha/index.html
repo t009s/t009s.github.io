@@ -21,9 +21,9 @@
       function handleCaptcha(captchaObj) {
         heading.textContent = "handleCaptcha";
         captchaObj.appendTo('#captcha-box');
-        captchaObj.onSuccess(() => {
+        captchaObj.onSuccess(
           handleSuccess(captchaObj)
-        });
+        );
       }
 
       function init(e) {
