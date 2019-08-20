@@ -19,11 +19,11 @@
       }
 
       function handleCaptcha(captchaObj) {
-        heading.textContent = "handleCaptcha";
+        heading.textContent = "q";
         captchaObj.appendTo('#captcha-box');
-        captchaObj.onSuccess(
-          handleSuccess(captchaObj)
-        );
+        captchaObj.onSuccess(() => {
+        handleSuccess(captchaObj)
+      });
       }
 
       function init(e) {
